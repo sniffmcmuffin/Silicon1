@@ -3,6 +3,12 @@ html, body {
     font-size: 16px; 
 }
 
+.wrapper {
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
 .text-xs { @include text-xs; }
 .text-s { @include text-s; }
 .text-m { @include text-m; }
@@ -24,8 +30,6 @@ h4, .h4 { @include h4; }
 h5, .h5 { @include h5; }
 h6, .h6 { @include h6; }
 
-.wrapper {
-    height: 100vh;
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+.hide {
+    display: none !important;
 }
