@@ -15,7 +15,7 @@ form {
         input[type="checkbox"] {
             height: 1.2rem;
             width: 1.2rem;
-            border 00.63rem solid red;
+            border: 00.63rem solid red;
         }
 
         label {
@@ -25,7 +25,7 @@ form {
     }
 
     label {
-        margin-bottom: 0:188rem;
+        margin-bottom: 0.188rem;
         font-weight: 700;
     }
 
@@ -42,7 +42,7 @@ form {
             border: 0.0063rem solid $danger !important;
             color: $danger;
 
-            &:: placeholder {
+            &::placeholder {
                 color: $danger;
             }
         }
