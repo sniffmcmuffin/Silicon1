@@ -1,4 +1,4 @@
-#features {
+.features {
     background: $gray-100;
     padding: 80px 0;
 
@@ -10,9 +10,18 @@
         .tool-features {
             margin-top: 20px;
             display: grid;
+            grid-template-columns: 1fr; // Default setting
 
-            @include lg {
-                grid-template-columns: 1fr 1fr 1fr;
+            @media (min-width: 576px) {
+                grid-template-columns: 1fr 1fr; // 2x3 grid on tablets
+                width: auto; // Adjust width to fit the view
+                gap: 20px; // Add some gap between grid items
+            }
+
+            @media (min-width: 992px) {
+                grid-template-columns: 1fr 1fr 1fr; // 3x2 grid on large screens
+                width: auto; // Adjust width to fit the view
+                gap: 20px; // Add some gap between grid items
             }
 
             .box {
@@ -21,31 +30,11 @@
                 transition: all 0.15s ease-in-out;
 
                 @include lg {
-                    &:nth-child(1) {
-                        border-top: 0px solid $gray-300;
+                    &:nth-child(3n+1) {
                         border-left: 0px solid $gray-300;
                     }
 
-                    &:nth-child(2) {
-                        border-top: 0px solid $gray-300;
-                    }
-
-                    &:nth-child(3) {
-                        border-top: 0px solid $gray-300;
-                        border-right: 0px solid $gray-300;
-                    }
-
-                    &:nth-child(4) {
-                        border-bottom: 0px solid $gray-300;
-                        border-left: 0px solid $gray-300;
-                    }
-
-                    &:nth-child(5) {
-                        border-bottom: 0px solid $gray-300;
-                    }
-
-                    &:nth-child(6) {
-                        border-bottom: 0px solid $gray-300;
+                    &:nth-child(3n) {
                         border-right: 0px solid $gray-300;
                     }
                 }
@@ -62,6 +51,7 @@
                     background-color: $gray-100;
                     margin: 20px;
                     border-radius: 8px;
+                    max-width: 100%; // Ensure the image doesn't exceed its container width
                 }
 
                 h5 {

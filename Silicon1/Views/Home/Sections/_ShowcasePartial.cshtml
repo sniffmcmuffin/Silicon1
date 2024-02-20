@@ -1,0 +1,27 @@
+﻿@model Silicon1.Models.Sections.ShowCaseViewModel
+
+
+<section class="showcase">
+    <div class="container">
+        <div class="content">
+            <h1>@Model.Title</h1>
+            <p>@Model.Text</p>
+            <a class="btn-theme-s" asp-controller="@Model.Link.ControllerName" asp-action="@Model.Link.ActionName">@Model.Link.Text</a>
+            <h6>@Model.BrandsText</h6>
+            <div class="brands">
+                @if (Model.Brands != null)
+                {
+                    foreach (var brand in Model.Brands)
+                    {
+                        <img src="@brand.ImageUrl" alt="@brand.AltText" />
+                    }
+                }
+            </div>
+            
+        </div>
+        <img class="background-image" src="@Model.ShowCaseImage.ImageUrl" alt="@Model.ShowCaseImage.AltText" />
+       
+    </div>
+</section>
+
+

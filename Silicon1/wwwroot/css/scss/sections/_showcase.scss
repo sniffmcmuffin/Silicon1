@@ -1,62 +1,59 @@
-#showcase {
+.showcase {
     position: relative;
     margin-bottom: 80px;
 
-    @include lg { 
-        display: flex;
-        justify-content: flex-end;
-        margin-bottom: 0px;
-    }
-
-    img {
-        position: relative;
-        z-index: -1;
-        width: 100%;
-
-        @include lg {
-            width: 45%;
-        }
-    }
-
     .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         height: 100%;
 
-        @include lg {
-            position: absolute;
-            left: 0;
-            right: 0;
-        }
-
         .content {
-            margin-top: 0px;
-            width: 100%;
-            text-align: center;
+/*            width: 100%;
+            text-align: left*/;
 
-            @include lg {
-                margin-top: 100px;
-                width: 40%;
+            @media (max-width: 1400px) {
+                width: 100%;
                 text-align: left;
             }
 
-            h1 {
-                 @include h2;
-
-                 @include lg {
-                     @include d4;
-                 }
+            @media (max-width: 1200px) {
+                width: 60%;
             }
 
-            p {
-                margin: 20px 0 40px 0;
-                @include text-m;
+            @media (max-width: 992px) {
+                min-width: 50%;
+                align-items: center;
+                justify-content: center;
+            }
 
-                @include lg {
-                    margin: 40px 0 50px 0;
-                    @include text-lg;
+            @media (max-width: 768px) {
+                min-width: 50%;
+                align-items: center;
+                justify-content: center;
+                
+            }
+
+
+            h1 {
+                font-size: 24px;
+
+                @media (min-width: 1200px) {
+                    font-size: 32px;
                 }
             }
 
-            btn-theme-s {
+            p {
+                margin: 20px 0 40px;
+                font-size: 16px;
+
+                @media (min-width: 1200px) {
+                    margin: 40px 0 50px;
+                    font-size: 18px;
+                }
+            }
+
+            .btn-theme-s {
                 display: inline-block;
             }
 
@@ -64,23 +61,66 @@
                 margin: 150px 0 30px 0;
                 display: none;
 
-                @include lg {
+                @media (min-width: 1200px) {
                     margin: 100px 0 30px 0;
                     display: flex;
                 }
             }
 
             .brands {
-                display: none;
+                //  display: none;
                 gap: 30px;
 
-                @include lg {
+                @media (max-width: 1400px) {
                     display: flex;
+
+                    img {
+                        height: 120px;
+                    }
+                }
+
+                @media (max-width: 1200px) {
+                    display: flex;
+
+                    img {
+                        height: 50px;
+                    }
+                }
+
+                @media (max-width: 992px) {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    align-items: center;
+
+                    img {
+                        height: 50px;
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    display: grid;
+                    grid-template-columns: auto;
+                    padding-top: 30px;
+                    align-items: center;
+
+                    img {
+                        height: 40px;
+                    }
                 }
 
                 img {
                     width: 120px;
                 }
+            }
+        }
+
+        img.background-image {
+            width: 100%;
+            display: none;
+
+            @media (min-width: 1200px) {
+                width: 45%; /* Adjusted width for the image */
+                display: block;
             }
         }
     }

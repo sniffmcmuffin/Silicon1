@@ -1,19 +1,13 @@
 ﻿@using Silicon1.Views.Components
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-
 <header>
     <div class="container">
-        <a id="logo" href="home.html"><img src="~/images/Silicon-Logotype-Light.svg" alt="Silicon Logo" />"</a>
+        <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/Silicon-Logotype-Light.svg" alt="Silicon Logo" />"</a>
      
-        <div id="menu">
+        <div id="menu" class="hide">
             <nav>
                 <a class="menu-link" href="#showcase">Overview</a>
                 <a class="menu-link" href="#features">Features</a>
-                <a class="menu-link" href="contact.html">Contact</a>
+                <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
             </nav>
         </div>
 
@@ -21,13 +15,14 @@
             <label>Light</label>
             <label class="switch" for="switch-mode">
                 <input type="checkbox" id="switch-mode" />
-                @* <div class="slider round"></div> :: Gives green squiggly line. *@ 
-                <span class="slider round"></span>
+                <div class="slider round"></div>
+           @*      <span class="slider round"></span> *@
             </label>
             <label>Dark</label>
         </div>
 
-        <div class="account-buttons">
+        @* Klura ut hur ändra knapparna från href tillasp-controller="Account" asp-action="SignIn" *@
+        <div id="account-buttons" class="hide"> 
             <partial name="~/Views/Components/_Button.cshtml" model='new ButtonViewModel {
                 ClassName = "btn-gray",
                 Link = "#",
@@ -41,5 +36,8 @@
                 Text = "Sign up" } ' />
         </div>
 
+@*         <button onclick="toggleMenu()" class="btn-mobilemenu">
+            <i class="fa-regular fa-bars"></i>
+        </button> *@
     </div>
 </header>
