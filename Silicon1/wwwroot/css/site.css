@@ -395,6 +395,20 @@ form {
 form .input-group {
   display: grid;
 }
+form .checkbox span {
+  display: block;
+}
+form .checkbox span.field-validation-error {
+  position: static;
+  top: 0;
+  right: 0;
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  color: #EF4444;
+}
 form .checkbox-group {
   display: flex;
   justify-content: flex-start;
@@ -409,6 +423,20 @@ form .checkbox-group input[type=checkbox] {
 form .checkbox-group label {
   margin: 0;
   font-weight: 400;
+}
+form .checkbox-group span {
+  display: block;
+}
+form .checkbox-group span.field-validation-error {
+  position: static;
+  top: 0;
+  right: 0;
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  color: #EF4444;
 }
 form label {
   margin-bottom: 0.188rem;
@@ -775,4 +803,63 @@ footer .container .social-media {
   .switch .container {
     max-width: 1200px;
   }
+}
+
+#signup {
+  height: 100%;
+}
+#signup .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+@media (min-width: 992px) {
+  #signup .container {
+    width: 60%;
+  }
+}
+@media (min-width: 1200px) {
+  #signup .container {
+    width: 40%;
+  }
+}
+#signup .container form {
+  padding: 1rem;
+}
+#signup .container form .content {
+  display: grid;
+  gap: 1rem 2rem;
+  grid-template-columns: 1fr;
+  grid-template-areas: "firstname" "lastname" "email" "password" "confirm" "terms" "button";
+  /* I asked ChatGpt what was wrong and got exact same code back. Pasted it */
+  /* in here and then it worked!!! Why oh why?! */
+}
+@media (min-width: 768px) {
+  #signup .container form .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "firstname lastname" "email email" "password password" "confirm confirm" "terms terms" "button button";
+  }
+}
+#signup .container form .content #form-firstname {
+  grid-area: firstname;
+}
+#signup .container form .content #form-lastname {
+  grid-area: lastname;
+}
+#signup .container form .content #form-email {
+  grid-area: email; /* I wrote exactly this and it didnt work, it got a mess on small screen. */
+}
+#signup .container form .content #form-password {
+  grid-area: password;
+}
+#signup .container form .content #form-confirm {
+  grid-area: confirm;
+}
+#signup .container form .content #form-terms {
+  grid-area: terms;
+  padding: 1rem 0;
+}
+#signup .container form .content #form-submit {
+  grid-area: button;
 }

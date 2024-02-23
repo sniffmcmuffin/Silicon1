@@ -1,9 +1,23 @@
-form { 
+form {
     width: 100%;
     display: grid;
 
     .input-group {
         display: grid;
+    }
+
+    .checkbox {
+        span {
+            display: block;
+
+            &.field-validation-error {
+                position: static;
+                top: 0;
+                right: 0;
+                @include text-s;
+                color: $danger;
+            }
+        }
     }
 
     .checkbox-group {
@@ -21,6 +35,18 @@ form {
         label {
             margin: 0;
             font-weight: 400;
+        }
+
+        span {
+            display: block;
+
+            &.field-validation-error {
+                position: static;
+                top: 0;
+                right: 0;
+                @include text-s;
+                color: $danger;
+            }
         }
     }
 
