@@ -1,4 +1,4 @@
-﻿@model SignUpViewModel 
+﻿@model SignUpViewModel
 
 @{
 	ViewData["Title"] = Model.Title;
@@ -49,9 +49,12 @@
 					</div>
 					<span asp-validation-for="Form.TermsAndConditions"></span>
 				</div>
-			</div>
 
+				
+			</div>
 			<button id="form-submit" class="btn-theme-s" type="submit">@Model.Title</button>
+			
+		
 		</form>
 	</div>
 </section>
