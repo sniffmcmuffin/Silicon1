@@ -831,35 +831,79 @@ footer .container .social-media {
   display: grid;
   gap: 1rem 2rem;
   grid-template-columns: 1fr;
-  grid-template-areas: "firstname" "lastname" "email" "password" "confirm" "terms" "button";
-  /* I asked ChatGpt what was wrong and got exact same code back. Pasted it */
-  /* in here and then it worked!!! Why oh why?! */
+  grid-template-areas: "form-firstname" "form-lastname" "form-email" "form-password" "form-confirm" "form-terms" "form-button";
 }
 @media (min-width: 768px) {
   #signup .container form .content {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: "firstname lastname" "email email" "password password" "confirm confirm" "terms terms" "button button";
+    grid-template-areas: "form-firstname form-lastname" "form-email form-email" "form-password form-password" "form-confirm form-confirm" "form-terms form-terms" "form-button form-button";
   }
 }
 #signup .container form .content #form-firstname {
-  grid-area: firstname;
+  grid-area: form-firstname;
 }
 #signup .container form .content #form-lastname {
-  grid-area: lastname;
+  grid-area: form-lastname;
 }
 #signup .container form .content #form-email {
-  grid-area: email; /* I wrote exactly this and it didnt work, it got a mess on small screen. */
+  grid-area: form-email;
 }
 #signup .container form .content #form-password {
-  grid-area: password;
+  grid-area: form-password;
 }
 #signup .container form .content #form-confirm {
-  grid-area: confirm;
+  grid-area: form-confirm;
 }
 #signup .container form .content #form-terms {
-  grid-area: terms;
-  padding: 1rem 0;
+  grid-area: form-terms;
 }
 #signup .container form .content #form-submit {
+  grid-area: form-button;
+}
+
+#signin {
+  height: 100%;
+}
+#signin .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+@media (min-width: 992px) {
+  #signin .container {
+    width: 60%;
+  }
+}
+@media (min-width: 1200px) {
+  #signin .container {
+    width: 40%;
+  }
+}
+#signin .container form {
+  padding: 1rem;
+}
+#signin .container form .content {
+  display: grid;
+  gap: 1rem 2rem;
+  grid-template-columns: 1fr;
+  grid-template-areas: "email" "password" "remember" "button" "forgot";
+}
+#signin .container form .content #form-email {
+  grid-area: email;
+}
+#signin .container form .content #form-password {
+  grid-area: password;
+}
+#signin .container form .content #form-forgot-remember {
+  grid-area: remember;
+  padding: 1rem 0;
+}
+#signin .container form .content #form-button {
   grid-area: button;
+}
+#signin .container form .content #form-forgot-password {
+  grid-area: forgot;
+  margin: 1rem 0 0 0;
+  text-align: center;
 }

@@ -22,41 +22,40 @@
                 display: grid;
                 gap: 1rem 2rem;
                 grid-template-columns: 1fr;
-                grid-template-areas: "firstname" "lastname" "email" "password" "confirm" "terms" "button";
+                grid-template-areas: "form-firstname" "form-lastname" "form-email" "form-password" "form-confirm" "form-terms" "form-button";
 
                 @include md {
                     grid-template-columns: 1fr 1fr;
                     grid-template-areas:
-                        "firstname lastname" "email email" "password password" "confirm confirm" "terms terms" "button button";
+                        "form-firstname form-lastname" "form-email form-email" "form-password form-password" "form-confirm form-confirm" "form-terms form-terms" "form-button form-button";
                 }
 
                 #form-firstname {
-                    grid-area: firstname;
+                    grid-area: form-firstname;
                 }
 
                 #form-lastname {
-                    grid-area: lastname;
+                    grid-area: form-lastname;
                 }
 
                 #form-email {
-                    grid-area: email; /* I wrote exactly this and it didnt work, it got a mess on small screen. */
-                }                     /* I asked ChatGpt what was wrong and got exact same code back. Pasted it */
-                                      /* in here and then it worked!!! Why oh why?! */
+                    grid-area: form-email;
+                }
+
                 #form-password {
-                    grid-area: password;
+                    grid-area: form-password;
                 }
 
                 #form-confirm {
-                    grid-area: confirm;
+                    grid-area: form-confirm;
                 }
 
                 #form-terms {
-                    grid-area: terms;
-                    padding: 1rem 0;
+                    grid-area: form-terms;
                 }
 
                 #form-submit {
-                    grid-area: button;
+                    grid-area: form-button;
                 }
             }
         }
