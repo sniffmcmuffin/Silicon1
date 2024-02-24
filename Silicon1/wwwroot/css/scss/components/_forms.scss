@@ -1,9 +1,23 @@
-form { 
+form {
     width: 100%;
     display: grid;
 
     .input-group {
         display: grid;
+    }
+
+    .checkbox {
+        span {
+            display: block;
+
+            &.field-validation-error {
+                position: static;
+                top: 0;
+                right: 0;
+                @include text-s;
+                color: $danger;
+            }
+        }
     }
 
     .checkbox-group {
@@ -15,17 +29,29 @@ form {
         input[type="checkbox"] {
             height: 1.2rem;
             width: 1.2rem;
-            border 00.63rem solid red;
+            border: 00.63rem solid red;
         }
 
         label {
             margin: 0;
             font-weight: 400;
         }
+
+        span {
+            display: block;
+
+            &.field-validation-error {
+                position: static;
+                top: 0;
+                right: 0;
+                @include text-s;
+                color: $danger;
+            }
+        }
     }
 
     label {
-        margin-bottom: 0:188rem;
+        margin-bottom: 0.188rem;
         font-weight: 700;
     }
 
@@ -42,7 +68,7 @@ form {
             border: 0.0063rem solid $danger !important;
             color: $danger;
 
-            &:: placeholder {
+            &::placeholder {
                 color: $danger;
             }
         }
