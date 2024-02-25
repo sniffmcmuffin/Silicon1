@@ -1,30 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Silicon1.ViewModels;
 
-namespace Silicon1.Controllers
+namespace Silicon1.Controllers;
+
+public class AccountController : Controller
 {
-    public class AccountController : Controller
-    {
-        public IActionResult Index()
-        {
-            ViewData["Title"] = "Profile";
-            return View();
-        }
+	// private readonly AccountService _accountService;
 
-        public IActionResult SignIn()
-        {
-            ViewData["Title"] = "Sign In";
-            return View();
-        }
+	//public AccountController(AccountService accountService)
+	//{
+	//	_accountService = accountService;
+	//}
 
-        public IActionResult SignUp()
-        {
-            ViewData["Title"] = "Sign Up";
-            return View();
-        }
+	[Route("/account")]
+	public IActionResult Deets() // Bättre använda en service så man skickar med id bara och inte hela modellen.
+	{		
+		var viewModel = new AccountDeetsViewModel();
 
-        public new IActionResult SignOut()
-        {
-            return RedirectToAction("Index", "Home");
-        }
-    }
+		// viewModel.BasicInfo = _accountService.GetBasicInfo(); 
+		// viewModel.AddressInfo = _accountService.AddressInfo();
+		return View(viewModel); 
+	}
+
+	[HttpPost]
+	public IActionResult BasicInfo(AccountDeetsViewModel viewModel)
+	{
+
+		// _accountService.SaveBasicInfo(viewModel.BasicInfo);
+
+		return RedirectToAction(nameof(Deets)); // Gå till details när det är klart.
+	}
+
+	[HttpPost]
+	public IActionResult AddressInfo(AccountDeetsViewModel viewModel)
+	{
+		return RedirectToAction(nameof(Deets), viewModel); // Gå till details när det är klart.
+	}
+
 }

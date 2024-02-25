@@ -38,6 +38,18 @@
     } 
 }
 
+.btn-transparent {
+    @include button;
+    color: $gray-700;
+    border: none;
+
+    &:hover {
+        text-decoration: none;
+        background: $gray-700;
+        color: $white;
+    }
+}
+
 .btn-gray { 
     @include button;
     background: $gray-200;
