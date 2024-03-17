@@ -1,4 +1,35 @@
-﻿<section class="features">
+﻿@inject FeatureService _featureService
+@{
+	var result = await _featureService.GetAllFeaturesAsync();
+	List<FeatureEntity> content = (List<FeatureEntity>)result.ContentResult!;
+	var feature = content.First();
+}
+
+@if (content != null)
+{
+	<section class="features">
+		<div class="container">
+			<h1>@feature.Title</h1>
+			<p>@feature.Ingress</p>
+			<div class="tool-features">
+
+				@foreach (var item in feature.FeatureItems)
+				{
+					<div class="box">
+						<img src="@item.ImageUrl" alt="@item.Title" />
+						<h5>@item.Title</h5>
+						<p>@item.Text</p>
+					</div>
+				}
+			</div>
+		</div>
+	</section>
+}
+
+
+
+
+@* <section class="features">
 	<div class="container">
 		<h1>What Do You Get With Our Tool?</h1>
 		<p>Make sure all your tasks are organized so you can set the priorites and focus on important.</p>
@@ -39,4 +70,4 @@
 	</div>
 
 
-</section>
+</section> *@

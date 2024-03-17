@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using Silicon1.Helpers;
+﻿using Infrastructure.Helpers;
 using System.ComponentModel.DataAnnotations;
 
-namespace Silicon1.Models;
+namespace Infrastructure.Models;
 
 public class SignUpModel
 {

@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Silicon1.Models;
+﻿using Infrastructure.Services;
+using Microsoft.AspNetCore.Mvc;
 using Silicon1.ViewModels;
 
 namespace Silicon1.Controllers;
 
-public class AuthController : Controller
+public class AuthController(UserService userService) : Controller
 {
+	private readonly UserService _userService = userService;
+
 	[Route("/signup")] // Så kan gå direkt till signup i stället för /auth/signup/
 	[HttpGet]
 	public IActionResult SignUp()
@@ -16,12 +18,16 @@ public class AuthController : Controller
 
 	[Route("/signup")] 
 	[HttpPost]
-	public IActionResult SignUp(SignUpViewModel viewModel)
+	public async Task<IActionResult> SignUp(SignUpViewModel viewModel)
 	{
-		if (!ModelState.IsValid) 
-			return View(viewModel);
+		if (!ModelState.IsValid)
+		{
+			var result = await _userService.CreateUserAsync(viewModel.Form);
 
-		return RedirectToAction("SignIn", "Auth");
+			if (result.StatusCode == Infrastructure.Models.StatusCode.OK)
+				return RedirectToAction("SignIn", "Auth");
+		}
+			return View(viewModel);
 	}
 
 	[Route("/signin")] 
@@ -34,14 +40,15 @@ public class AuthController : Controller
 
 	[Route("/signin")]
 	[HttpPost]
-	public IActionResult SignIn(SignInViewModel viewModel)
+	public async Task<IActionResult> SignIn(SignInViewModel viewModel)
 	{
-		if (!ModelState.IsValid)
-			return View(viewModel);
-		
-		  //var result = _authService.SignIn(viewModel.Form); 
-		 //   if (result)
-		//	return RedirectToAction("Account", "Deets");
+		if (ModelState.IsValid) // Det är fler saker än detta som ska till för att göra inloggning enl Hans. Vilka?
+		{
+			var result = await _userService.SignInUserAsync(viewModel.Form);
+
+			if (result.StatusCode == Infrastructure.Models.StatusCode.OK)
+				return RedirectToAction("Deets", "Account");
+		}
 
 		viewModel.ErrorMessage = "Incorrect email or password";
 		return View(viewModel);			

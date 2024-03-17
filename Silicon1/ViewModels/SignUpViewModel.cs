@@ -1,4 +1,4 @@
-﻿using Silicon1.Models;
+﻿using Infrastructure.Models;
 
 namespace Silicon1.ViewModels;
 

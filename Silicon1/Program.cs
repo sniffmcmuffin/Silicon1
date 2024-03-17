@@ -1,4 +1,6 @@
 using Infrastructure.Contexts;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +8,17 @@ builder.Services.AddRouting(x => x.LowercaseUrls = true);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+
+// Repositories
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<FeatureRepository>();
+builder.Services.AddScoped<FeatureItemRepository>();
+
+// Services
+builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<FeatureService>();
 
 var app = builder.Build();
 
