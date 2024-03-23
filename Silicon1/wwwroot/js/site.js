@@ -1,6 +1,8 @@
 ﻿const toggleMenu = () => {
-    document.getElementById('menu').classList.toggle('hide');
+    console.log("Button clicked!");
+    document.getElementById('mobile-menu').classList.toggle('hide');
     document.getElementById('account-buttons').classList.toggle('hide');
+       
 }
 
 const checkScreenSize = () => {

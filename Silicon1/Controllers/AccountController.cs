@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using idInfrastructure.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Silicon1.ViewModels;
 
 namespace Silicon1.Controllers;
@@ -12,7 +14,7 @@ public class AccountController : Controller
 	//	_accountService = accountService;
 	//}
 
-	[Route("/account")]
+    [Route("/account")]
 	public IActionResult Deets() // Bättre använda en service så man skickar med id bara och inte hela modellen.
 	{		
 		var viewModel = new AccountDeetsViewModel();

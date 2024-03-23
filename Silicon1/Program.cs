@@ -1,3 +1,5 @@
+using idInfrastructure.Contexts;
+using idInfrastructure.Entities;
 using Infrastructure.Contexts;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
@@ -7,18 +9,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRouting(x => x.LowercaseUrls = true);
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+// Databases
+// builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
+builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("AccountsServer")));
 
 // Repositories
-builder.Services.AddScoped<AddressRepository>();
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<FeatureRepository>();
-builder.Services.AddScoped<FeatureItemRepository>();
+//builder.Services.AddScoped<AddressRepository>();
+//builder.Services.AddScoped<UserRepository>();
+//builder.Services.AddScoped<FeatureRepository>();
+//builder.Services.AddScoped<FeatureItemRepository>();
 
-// Services
-builder.Services.AddScoped<AddressService>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<FeatureService>();
+//// Services
+//builder.Services.AddScoped<AddressService>();
+//builder.Services.AddScoped<UserService>();
+// builder.Services.AddScoped<FeatureService>();
+
+// Identity Individual Accounts stuff
+builder.Services.AddDefaultIdentity<UserEntity>(x =>
+{
+    x.User.RequireUniqueEmail = true;
+    x.SignIn.RequireConfirmedAccount = false;
+    x.Password.RequiredLength = 8;
+}).AddEntityFrameworkStores<AppDbContext>();
 
 var app = builder.Build();
 
@@ -30,7 +42,7 @@ var app = builder.Build();
 // }
 
 app.UseHsts();
-
+// app.UseStatusCodePagesWithReExecute("/error", "?statuscode={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

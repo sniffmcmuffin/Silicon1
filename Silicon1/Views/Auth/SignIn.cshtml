@@ -5,11 +5,19 @@
 
 <section id="signin">
 	<div class="container">
+
 		<form method="post" asp-controller="auth" asp-action="SignIn" novalidate>
 			@* <div asp-validation-summary="All"></div> *@
 			<div>
 				@Model.ErrorMessage
 			</div>
+
+			@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+			{
+				<div class="alerter">
+					@ViewData["ErrorMessage"]
+				</div>
+			}
 
 			<h1>Welcome back!</h1>
 			<p>Don't have an account yet? <a asp-controller="Auth" asp-action="SignUp">Sign up here></a></p>

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using idInfrastructure.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace idInfrastructure.Contexts
+namespace idInfrastructure.Contexts;
+
+public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<UserEntity>(options)
 {
-    internal class DataContext
-    {
-    }
+    public DbSet<AddressEntity> Address { get; set; }
 }

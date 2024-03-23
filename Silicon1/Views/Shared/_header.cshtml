@@ -1,4 +1,5 @@
 ﻿@using Silicon1.Views.Components
+
 <header>
     <div class="container">
         <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/Silicon-Logotype-Light.svg" alt="Silicon Logo" />"</a>
@@ -37,8 +38,21 @@
             <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
         </div>
 
-@*         <button onclick="toggleMenu()" class="btn-mobilemenu">
-            <i class="fa-regular fa-bars"></i>
-        </button> *@
+        <div class="btn-mobile" onclick="toggleMenu()">
+            <button>
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <nav id="mobile-menu" class="hide">
+                <ul>
+                    <li><a href="#">Menu Item 1</a></li>
+                    <li><a href="#">Menu Item 2</a></li>
+                    <!-- Add more menu items as needed -->
+                </ul>
+            </nav>
+        </div>
+
+
+
+
     </div>
 </header>
