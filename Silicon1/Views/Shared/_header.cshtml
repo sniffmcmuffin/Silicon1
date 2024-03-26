@@ -1,4 +1,7 @@
-﻿@using Silicon1.Views.Components
+﻿
+@using Silicon1.Views.Components
+
+@inject SignInManager<UserEntity> _signInManager
 
 <header>
     <div class="container">
@@ -8,6 +11,10 @@
             <nav>
                 <a class="menu-link" href="#showcase">Overview</a>
                 <a class="menu-link" href="#features">Features</a>
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                }
                 <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
             </nav>
         </div>
@@ -23,6 +30,16 @@
 
         @* Klura ut hur ändra knapparna från href till asp-controller="Account" asp-action="SignIn" *@
         <div id="account-buttons" class="hide"> 
+            @if (_signInManager.IsSignedIn(User))
+            {
+                <a asp-controller="Auth" asp-action="SignOut" class="btn-theme"><i class="fa-regular fa-right-from-bracket"></i><span>Sign Out</span></a>
+            }
+            else
+            {
+                <a asp-controller="Auth" asp-action="SignIn" class="btn-theme"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
+                <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
+
+            }
 @*             <partial name="~/Views/Components/_Button.cshtml" model='new ButtonViewModel {
                 ClassName = "btn-gray",
                 Link = "#",
@@ -34,9 +51,7 @@
             Icon = "fa-regular fa-user",
             Text = "Sign up" } ' /> *@
 
-            <a asp-controller="Auth" asp-action="SignIn" class="btn-theme"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
-            <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
-        </div>
+           </div>
 
         <div class="btn-mobile" onclick="toggleMenu()">
             <button>
@@ -46,7 +61,7 @@
                 <ul>
                     <li><a href="#">Menu Item 1</a></li>
                     <li><a href="#">Menu Item 2</a></li>
-                    <!-- Add more menu items as needed -->
+                   
                 </ul>
             </nav>
         </div>

@@ -1,6 +1,6 @@
 ﻿@model AccountDeetsViewModel	
 @{
-	ViewData["Title"] = $"Account Details for {Model.BasicInfo.FirstName} {Model.BasicInfo.LastName}'s profile";
+	ViewData["Title"] = $"Account Details for {Model.User.FirstName} {Model.User.LastName}'s profile";
 }
 
 <div class="container">
@@ -27,27 +27,27 @@
 					<div class="content">
 
 						<div id="form-firstname" class="input-group">
-							<label asp-for=BasicInfo.FirstName></label>
-							<span asp-validation-for="BasicInfo.FirstName"></span>
-							<input asp-for="BasicInfo.FirstName" />
+							<label asp-for=User.FirstName></label>
+							<span asp-validation-for="User.FirstName"></span>
+							<input asp-for="User.FirstName" />
 						</div>
 
 						<div id="form-lastname" class="input-group">
-							<label asp-for=BasicInfo.LastName></label>
-							<span asp-validation-for="BasicInfo.LastName"></span>
-							<input asp-for="BasicInfo.LastName" />
+							<label asp-for=User.LastName></label>
+							<span asp-validation-for="User.LastName"></span>
+							<input asp-for="User.LastName" />
 						</div>
 
 						<div id="form-email" class="input-group">
-							<label asp-for=BasicInfo.Email></label>
-							<span asp-validation-for="BasicInfo.Email"></span>
-							<input asp-for="BasicInfo.Email" />
+							<label asp-for=User.Email></label>
+							<span asp-validation-for="User.Email"></span>
+							<input asp-for="User.Email" />
 						</div>
 
 						<div id="form-phone" class="input-group">
-							<label asp-for=BasicInfo.Phone></label>
-							<span asp-validation-for="BasicInfo.Phone"></span>
-							<input asp-for="BasicInfo.Phone" />
+							<label asp-for=User.PhoneNumber></label>
+							<span asp-validation-for="User.PhoneNumber"></span>
+							<input asp-for="User.PhoneNumber" />
 						</div>
 
 						<div id="form-bio" class="input-group">

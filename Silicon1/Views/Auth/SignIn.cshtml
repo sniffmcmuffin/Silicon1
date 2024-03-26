@@ -1,6 +1,9 @@
-﻿@model SignInViewModel
+﻿@* I korta videon gjorde Hans dependency injection här för SignInManager för account knappar osv. 
+Titta närmare på det när det finns tid. *@
+
+@model SignInViewModel
 @{
-	ViewData["Title"] = Model.Title;
+	ViewData["Title"] = "Sign In";
 }
 
 <section id="signin">
@@ -8,9 +11,9 @@
 
 		<form method="post" asp-controller="auth" asp-action="SignIn" novalidate>
 			@* <div asp-validation-summary="All"></div> *@
-			<div>
+		@* 	<div>
 				@Model.ErrorMessage
-			</div>
+			</div> *@
 
 			@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
 			{
@@ -42,7 +45,7 @@
 						<label asp-for="Form.RememberMe"></label>
 					</div>
 				</div>
-				<button id="form-submit" class="btn-theme-s" type="submit">@Model.Title</button>
+				<button id="form-submit" class="btn-theme-s" type="submit">Sign In</button>
 				<a id="form-forgot-password" asp-controller="Account" asp-action="Forgot">Forgot your password?</a>
 			</div>
 

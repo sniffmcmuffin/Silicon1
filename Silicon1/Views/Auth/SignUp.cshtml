@@ -1,11 +1,21 @@
 ﻿@model SignUpViewModel
 
 @{
-	ViewData["Title"] = Model.Title;
+	// For some reason does not model work. It throw an exception and says its null.
+	// ViewData["Title"] = Model.Title;
+	ViewData["Title"] = "Sign Up";
 }
 
 <section id="signup">
 	<div class="container">
+
+		@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+		{
+			<div class="alerter">
+				@ViewData["ErrorMessage"]
+			</div>
+		}
+
 		<form method="post" asp-controller="auth" asp-action="SignUp" novalidate>
 			<h1>Create Account</h1>
 			<p>Already have an account? <a asp-controller="Auth" asp-action="SignIn">Sign in here></a></p>
@@ -52,7 +62,7 @@
 
 				
 			</div>
-			<button id="form-submit" class="btn-theme-s" type="submit">@Model.Title</button>
+			<button id="form-submit" class="btn-theme-s" type="submit">Sign Up</button>
 			
 		
 		</form>
