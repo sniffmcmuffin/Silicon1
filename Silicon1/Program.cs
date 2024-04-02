@@ -1,5 +1,6 @@
 using idInfrastructure.Contexts;
 using idInfrastructure.Entities;
+using idInfrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configur
 //builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserService>();
 // builder.Services.AddScoped<FeatureService>();
+builder.Services.AddScoped<AddressService>();
 
 // Identity Individual Accounts stuff
 builder.Services.AddDefaultIdentity<UserEntity>(x =>

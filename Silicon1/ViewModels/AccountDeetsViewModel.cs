@@ -1,21 +1,14 @@
 ﻿using idInfrastructure.Entities;
 using Silicon1.Models;
+using Silicon1.ViewModels.Account;
+using System.ComponentModel.DataAnnotations;
 
 namespace Silicon1.ViewModels;
 
 public class AccountDeetsViewModel
 {
-    public UserEntity User { get; set; } = null!;
-
-    public string Title { get; set; } = "Account Details";
-	public AccountDeetsBasicInfoModel BasicInfo { get; set; } = new AccountDeetsBasicInfoModel()
-	{
-	    //ProfileImage = "images/profile-image.svg",
-		//FirstName = "Jimmy",
-		//LastName = "Sjöström",
-		//Email = "jimmy@domain.nu"
-	};
-	public AccountsDeetsAddressInfoModel AddressInfo { get; set; } = new AccountsDeetsAddressInfoModel();
-	
-	// Här kan man ha filuppladdning för sin profilbild.
+	public ProfileInfoViewModel? ProfileInfo { get; set; } 
+	public string Title { get; set; } = "Account Details";
+	public BasicInfoFormViewModel? BasicInfoForm { get; set; } 
+	public AddressInfoFormViewModel? AddressInfoForm { get; set; } 
 }

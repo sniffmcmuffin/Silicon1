@@ -4,6 +4,8 @@ namespace Silicon1.Models;
 
 public class AccountDeetsBasicInfoModel
 {
+	public string UserId { get; set; } = null!;
+
 	[DataType(DataType.ImageUrl)]
 	public string? ProfileImage { get; set; }
 
