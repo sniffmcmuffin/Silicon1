@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Silicon1.Models.Components;
 using Silicon1.Models.Sections;
 using Silicon1.Models.Views;
@@ -7,7 +8,9 @@ namespace Silicon1.Controllers;
 
 public class HomeController : Controller
 {
-    public IActionResult Index()
+	// [Authorize] // Smidigt om man vill tvinga folk vara inloggade.
+	[Route("/")]
+	public IActionResult Index()
 	{
 		var viewModel = new HomeIndexViewModel
 		{
@@ -33,4 +36,7 @@ public class HomeController : Controller
 		ViewData["Title"] = viewModel.Title;
 		return View(viewModel);
     }
+
+	[Route("/error")]
+	public IActionResult Error404(int statusCode) => View();
 }

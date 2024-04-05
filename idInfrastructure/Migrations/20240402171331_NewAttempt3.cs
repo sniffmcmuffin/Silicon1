@@ -6,28 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace idInfrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class NewAttempt : Migration
+    public partial class NewAttempt3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Address",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdressLine_1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdressLine_2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Address", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -92,27 +75,26 @@ namespace idInfrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AddressEntityUserEntity",
+                name: "Address",
                 columns: table => new
                 {
-                    AddressId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AdressLine_1 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdressLine_2 = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AddressEntityUserEntity", x => new { x.AddressId, x.UsersId });
+                    table.PrimaryKey("PK_Address", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AddressEntityUserEntity_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AddressEntityUserEntity_AspNetUsers_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_Address_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -201,9 +183,9 @@ namespace idInfrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddressEntityUserEntity_UsersId",
-                table: "AddressEntityUserEntity",
-                column: "UsersId");
+                name: "IX_Address_UserId",
+                table: "Address",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -249,7 +231,7 @@ namespace idInfrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AddressEntityUserEntity");
+                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -265,9 +247,6 @@ namespace idInfrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

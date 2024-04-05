@@ -2,6 +2,7 @@ using idInfrastructure.Contexts;
 using idInfrastructure.Entities;
 using idInfrastructure.Services;
 using Microsoft.EntityFrameworkCore;
+using Silicon1.Helpers.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRouting(x => x.LowercaseUrls = true);
@@ -31,6 +32,18 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
     x.Password.RequiredLength = 8;
 }).AddEntityFrameworkStores<AppDbContext>();
 
+builder.Services.ConfigureApplicationCookie(x =>
+{   
+    x.LoginPath = "/signin";
+    x.LogoutPath = "/signout";
+	x.AccessDeniedPath = "/denied"; 
+
+	x.Cookie.HttpOnly = true;
+    x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+    x.SlidingExpiration = true; // När user gör nått på sidan så nollställs timern ovan.
+    x.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Ha allitd med iom https.
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,10 +54,12 @@ var app = builder.Build();
 // }
 
 app.UseHsts();
-// app.UseStatusCodePagesWithReExecute("/error", "?statuscode={0}");
+app.UseStatusCodePagesWithReExecute("/error", "?statuscode={0}");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseUserSessionValidation(); 
 app.UseAuthorization();
 
 app.MapControllerRoute(

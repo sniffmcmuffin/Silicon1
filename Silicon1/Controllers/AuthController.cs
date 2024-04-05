@@ -13,16 +13,13 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 	private readonly UserManager<UserEntity> _userManager = userManager;
 	private readonly SignInManager<UserEntity> _signInManager = signInManager;
 
+	#region SignUp
 	[HttpGet]
 	[Route("/signup")]
 	public IActionResult SignUp()
 	{
        if (_signInManager.IsSignedIn(User))
-		 	return RedirectToAction("Deets", "Account");
-
-
-  //	if (User != null)
-	// 		return RedirectToAction("Deets", "Account");
+		 	return RedirectToAction("Deets", "Account"); // Funkar!
 
 		return View();
 	}
@@ -53,27 +50,32 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 			if (result.Succeeded)
 			{
 				return RedirectToAction("Deets", "Account");
+				// Alternativt 
+				// return RedirectToAction("Signin", "Auth");
 			}
 		}
 		return View(viewModel);
 	}
+	#endregion
 
+	#region SignIn
 	[HttpGet]
 	[Route("/signin")]
-	public IActionResult SignIn()
+	public IActionResult SignIn(string returnUrl)
 	{
-	
-		 if (_signInManager.IsSignedIn(User))
-			return RedirectToAction("Deets", "Account");
+		if (_signInManager.IsSignedIn(User))
+			return RedirectToAction("Deets", "Account"); 
 
-	//	if (User != null)
-		//	return RedirectToAction("Deets", "Account");
+		ViewData["ReturnUrl"] = "account/deets"; // returnUrl ?? Url.Content("~/"); vill inte.
+
 		return View();
 	}
 
+
+
 	[HttpPost]
 	[Route("/signin")]
-	public async Task<IActionResult> SignIn(SignInViewModel viewModel)
+	public async Task<IActionResult> SignIn(SignInViewModel viewModel, string returnUrl)
 	{
 		if (ModelState.IsValid)
 		{
@@ -81,6 +83,9 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 
 			if (result.Succeeded)
 			{
+				if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+					return RedirectToAction(returnUrl);
+
 				return RedirectToAction("Deets", "Account");
 			}
 		}
@@ -88,12 +93,15 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 		ViewData["ErrorMessage"] = "Incorrect email or password";
 		return View(viewModel);
 	}
+	#endregion
 
+	#region SignOut
 	[HttpGet]
 	[Route("/signout")]
 	public new async Task<IActionResult> SignOut()
 	{
 		await _signInManager.SignOutAsync();
-		return RedirectToAction("Home", "Default");
+		return RedirectToAction("Index", "Home");
 	}
+	#endregion
 }

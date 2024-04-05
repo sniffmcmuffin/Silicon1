@@ -10,9 +10,10 @@ using Silicon1.ViewModels.Account;
 namespace Silicon1.Controllers;
 
 [Authorize]
-public class AccountController(UserManager<UserEntity> userManager, AddressService addressService) : Controller
+public class AccountController(UserManager<UserEntity> userManager, AddressService addressService, SignInManager<UserEntity> signInManager) : Controller
 {
 	private readonly UserManager<UserEntity> _userManager = userManager;
+	private readonly SignInManager<UserEntity> _signInManager = signInManager;
 	private readonly AddressService _addressService = addressService;
 
 	#region [HttpGet] Details
@@ -20,6 +21,9 @@ public class AccountController(UserManager<UserEntity> userManager, AddressServi
 	[Route("/account/deets")]
 	public async Task<IActionResult> Deets()
 	{
+		if (!_signInManager.IsSignedIn(User))
+			return RedirectToAction("SignIn", "Auth");
+
 		var viewModel = new AccountDeetsViewModel();
 		viewModel.ProfileInfo = await PopulateProfileInfoAsync();
 		viewModel.BasicInfoForm ??= await PopulateBasicInfoAsync();

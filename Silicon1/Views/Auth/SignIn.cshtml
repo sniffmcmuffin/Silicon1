@@ -9,7 +9,7 @@ Titta närmare på det när det finns tid. *@
 <section id="signin">
 	<div class="container">
 
-		<form method="post" asp-controller="auth" asp-action="SignIn" novalidate>
+		<form method="post" asp-controller="auth" asp-action="SignIn" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" novalidate>
 			@* <div asp-validation-summary="All"></div> *@
 		@* 	<div>
 				@Model.ErrorMessage
