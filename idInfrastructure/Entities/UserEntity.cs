@@ -13,5 +13,7 @@ public class UserEntity : IdentityUser
     [ProtectedPersonalData]
     public string? Bio {  get; set; }
 
+    public bool IsExternalAccount { get; set; } = false;
+
     public ICollection<AddressEntity> Address { get; set; } = [];
 }

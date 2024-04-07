@@ -965,6 +965,26 @@ footer .container .social-media {
   margin: 1rem 0 0 0;
   text-align: center;
 }
+#signin .external-providers {
+  text-align: center;
+  margin-top: 20px;
+}
+#signin .external-providers h6 {
+  margin-bottom: 10px;
+}
+#signin .external-providers .providers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#signin .external-providers .providers .btn-theme-s {
+  margin-top: 10px; /* Adjust the margin to add space between the buttons */
+}
+#signin .external-providers .providers .btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between the buttons */
+}
 
 #account-deets {
   display: grid;

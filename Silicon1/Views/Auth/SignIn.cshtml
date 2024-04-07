@@ -8,12 +8,9 @@ Titta närmare på det när det finns tid. *@
 
 <section id="signin">
 	<div class="container">
+		<partial name="~/Views/Shared/_StatusMessage.cshtml" />
 
 		<form method="post" asp-controller="auth" asp-action="SignIn" asp-route-ReturnUrl="@ViewData["ReturnUrl"]" novalidate>
-			@* <div asp-validation-summary="All"></div> *@
-		@* 	<div>
-				@Model.ErrorMessage
-			</div> *@
 
 			@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
 			{
@@ -47,6 +44,16 @@ Titta närmare på det när det finns tid. *@
 				</div>
 				<button id="form-submit" class="btn-theme-s" type="submit">Sign In</button>
 				<a id="form-forgot-password" asp-controller="Account" asp-action="Forgot">Forgot your password?</a>
+			</div>
+
+			<div class="external-providers">
+				<h6>Or Sign in with your social account</h6>
+				<div class="providers">
+					<div class="btn-group">
+						<a class="btn-gray" asp-action="Google" asp-controller="Auth"><i class="fa-brands fa-google"></i> Google</a>
+						<a class="btn-gray" asp-action="Facebook" asp-controller="Auth"><i class="fa-brands fa-facebook"></i> Facebook</a>
+					</div>
+				</div>
 			</div>
 
 

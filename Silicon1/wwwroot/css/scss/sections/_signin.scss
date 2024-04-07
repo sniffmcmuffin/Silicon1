@@ -1,11 +1,9 @@
 #signin {
-  //  height: 100%;
-  margin-top: 30px;
- 
-  .container {
+    //  height: 100%;
+    margin-top: 30px;
 
-      width: 95%;
-
+    .container {
+        width: 95%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -29,7 +27,7 @@
                 grid-template-areas: "email" "password" "remember" "button" "forgot";
 
                 #form-email {
-                    grid-area: email; 
+                    grid-area: email;
                 }
 
                 #form-password {
@@ -49,7 +47,32 @@
                     grid-area: forgot;
                     margin: 1rem 0 0 0;
                     text-align: center;
-                }              
+                }
+            }
+        }
+    }
+
+    .external-providers {
+        text-align: center;
+        margin-top: 20px;
+
+        h6 {
+            margin-bottom: 10px;
+        }
+
+        .providers {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .btn-theme-s {
+                margin-top: 10px; /* Adjust the margin to add space between the buttons */
+            }
+
+            .btn-group {
+                display: flex;
+                justify-content: center;
+                gap: 10px; /* Adjust the gap between the buttons */
             }
         }
     }

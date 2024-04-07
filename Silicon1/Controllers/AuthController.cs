@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Silicon1.ViewModels;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Claims;
 
 namespace Silicon1.Controllers;
 
@@ -13,7 +14,8 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 	private readonly UserManager<UserEntity> _userManager = userManager;
 	private readonly SignInManager<UserEntity> _signInManager = signInManager;
 
-	#region SignUp
+
+	#region Individual Account - SignUp
 	[HttpGet]
 	[Route("/signup")]
 	public IActionResult SignUp()
@@ -58,14 +60,14 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 	}
 	#endregion
 
-	#region SignIn
+	#region Individual Account - SignIn
 	[HttpGet]
 	[Route("/signin")]
 	public IActionResult SignIn(string returnUrl)
 	{
 		if (_signInManager.IsSignedIn(User))
-			return RedirectToAction("Deets", "Account"); 
-
+			return RedirectToAction("Deets", "Account");
+		
 		ViewData["ReturnUrl"] = "account/deets"; // returnUrl ?? Url.Content("~/"); vill inte.
 
 		return View();
@@ -91,17 +93,78 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 		}
 		ModelState.AddModelError("IncorrectValues", "Incorrect email or password");
 		ViewData["ErrorMessage"] = "Incorrect email or password";
+	//	ViewData["StatusMessage"] = "danger|Incorrect email or password!";
 		return View(viewModel);
 	}
 	#endregion
 
-	#region SignOut
+	#region Individual Account - SignOut
 	[HttpGet]
 	[Route("/signout")]
 	public new async Task<IActionResult> SignOut()
 	{
 		await _signInManager.SignOutAsync();
 		return RedirectToAction("Index", "Home");
+	}
+	#endregion
+
+	#region External Account - Facebook
+	[HttpGet]
+	public IActionResult Facebook()
+	{
+		var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", Url.Action("FacebookCallback"));
+		return new ChallengeResult("Facebook", authProps);
+	}
+
+	[HttpGet]
+	public async Task<IActionResult> FacebookCallback()
+	{
+		var info = await _signInManager.GetExternalLoginInfoAsync();
+		
+		if (info != null)
+		{
+			var userEntity = new UserEntity
+			{
+				FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+				LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,
+				Email = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+				UserName = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+				IsExternalAccount = true,
+			};
+
+			var user = await _userManager.FindByEmailAsync(userEntity.Email);
+
+			if (user == null)
+			{
+				var result = await _userManager.CreateAsync(userEntity); // Inget password iom Facebook sköter det.
+			
+				if (result.Succeeded)
+					user = await _userManager.FindByEmailAsync(userEntity.Email);				
+			}
+
+			if (user != null)
+			{
+				if (user.FirstName != userEntity.FirstName || 
+					user.LastName != userEntity.LastName || 
+					user.Email != userEntity.Email)
+				{
+					user.FirstName = userEntity.FirstName;
+					user.LastName = userEntity.LastName;
+					user.Email = userEntity.Email;
+
+					await _userManager.UpdateAsync(user);
+				}
+
+				await _signInManager.SignInAsync(user, isPersistent: false);
+
+				if (HttpContext.User != null)
+					return RedirectToAction("Deets", "Account");
+			}
+		}
+
+		ModelState.AddModelError("InvalidFacebookAuthentication", "danger|Failed to authenticate with Facebook.");
+		ViewData["StatusMessage"] = "danger|Failed to authenticate with Facebook.";
+		return RedirectToAction("SignIn", "Auth");
 	}
 	#endregion
 }

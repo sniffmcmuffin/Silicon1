@@ -7,6 +7,8 @@ namespace idInfrastructure.Contexts;
 public class AppDbContext(DbContextOptions<AppDbContext> options) : IdentityDbContext<UserEntity>(options)
 {
     public DbSet<AddressEntity> Address { get; set; }
+	public DbSet<FeatureEntity> Features { get; set; }
+	public DbSet<FeatureItemEntity> FeaturesItems { get; set; }
 
 	protected override void OnModelCreating(ModelBuilder builder)
 	{

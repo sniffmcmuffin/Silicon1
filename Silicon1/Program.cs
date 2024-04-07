@@ -1,5 +1,6 @@
 using idInfrastructure.Contexts;
 using idInfrastructure.Entities;
+using idInfrastructure.Repositories;
 using idInfrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Silicon1.Helpers.Middlewares;
@@ -15,13 +16,13 @@ builder.Services.AddDbContext<AppDbContext>(x => x.UseSqlServer(builder.Configur
 // Repositories
 //builder.Services.AddScoped<AddressRepository>();
 //builder.Services.AddScoped<UserRepository>();
-//builder.Services.AddScoped<FeatureRepository>();
-//builder.Services.AddScoped<FeatureItemRepository>();
+builder.Services.AddScoped<FeatureRepository>();
+builder.Services.AddScoped<FeatureItemRepository>();
 
 //// Services
 //builder.Services.AddScoped<AddressService>();
 //builder.Services.AddScoped<UserService>();
-// builder.Services.AddScoped<FeatureService>();
+builder.Services.AddScoped<FeatureService>();
 builder.Services.AddScoped<AddressService>();
 
 // Identity Individual Accounts stuff
@@ -42,6 +43,15 @@ builder.Services.ConfigureApplicationCookie(x =>
     x.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     x.SlidingExpiration = true; // När user gör nått på sidan så nollställs timern ovan.
     x.Cookie.SecurePolicy = CookieSecurePolicy.Always; // Ha allitd med iom https.
+});
+
+// External Authentication
+builder.Services.AddAuthentication().AddFacebook(x =>
+{
+    x.AppId = "965511941229847";
+    x.AppSecret = "732e59ba1099d3ab1332e233a166eb67";
+    x.Fields.Add("first_name");
+    x.Fields.Add("last_name");
 });
 
 var app = builder.Build();

@@ -130,7 +130,7 @@ public class AccountController(UserManager<UserEntity> userManager, AddressServi
 		{
 			FirstName = user!.FirstName,
 			LastName = user.LastName,
-			Email = user.Email!
+			Email = user.Email!,
 		};
 	}
 
@@ -146,7 +146,8 @@ public class AccountController(UserManager<UserEntity> userManager, AddressServi
 			Email = user.Email!,
 			PhoneNumber = user.PhoneNumber,
 			Biography = user.Bio,
-		};
+			IsExternalAccount = user.IsExternalAccount,
+		};		
 	}
 
 	private async Task<AddressInfoFormViewModel> PopulateAddressInfoAsync()
@@ -156,13 +157,18 @@ public class AccountController(UserManager<UserEntity> userManager, AddressServi
 		if (user != null)
 		{
 			var address = await _addressService.GetAddressAsync(user.Id);
-			return new AddressInfoFormViewModel
+
+			// Ensure that address is not null before accessing its properties
+			if (address != null)
 			{
-				AddressLine_1 = address.AdressLine_1,
-				AddressLine_2 = address.AdressLine_2,
-				PostalCode = address.PostalCode,
-				City = address.City,
-			};
+				return new AddressInfoFormViewModel
+				{
+					AddressLine_1 = address.AdressLine_1,
+					AddressLine_2 = address.AdressLine_2,
+					PostalCode = address.PostalCode,
+					City = address.City,
+				};
+			}
 		}
 
 		return new AddressInfoFormViewModel();

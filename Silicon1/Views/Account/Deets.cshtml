@@ -1,10 +1,10 @@
 ﻿@model AccountDeetsViewModel	
 @{
-	 ViewData["Title"] = $"Account Details for {Model.ProfileInfo.FirstName} {Model.ProfileInfo.LastName}'s profile";
+	 ViewData["Title"] = $"Account Details for {Model.ProfileInfo!.FirstName} {Model.ProfileInfo.LastName}'s profile";
 }
 
 <div class="container">
-
+	
 	@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
 	{
 		<div class="alerter">
@@ -33,6 +33,9 @@
 		</aside>
 
 		<div class="details">
+
+			<partial name="~/Views/Shared/_StatusMessage.cshtml" />
+
 			<section class="basic-info">
 				<form method="post" asp-controller="Account" asp-action="Deets" novalidate>
 					<h2>Account Details</h2>
@@ -41,33 +44,54 @@
 					<div class="content">
 
 						<div id="form-firstname" class="input-group">
-							<label asp-for=BasicInfoForm.FirstName></label>
-							<span asp-validation-for="BasicInfoForm.FirstName"></span>
-							<input asp-for="BasicInfoForm.FirstName" />
+							<label asp-for=BasicInfoForm!.FirstName></label>
+								@if(Model.BasicInfoForm!.IsExternalAccount)
+								{
+									<input asp-for="BasicInfoForm!.FirstName" disabled />
+								}
+								else
+								{
+									<input asp-for="BasicInfoForm!.FirstName" />
+								<span asp-validation-for="BasicInfoForm!.FirstName"></span>
+								}
 						</div>
 
 						<div id="form-lastname" class="input-group">
-							<label asp-for=BasicInfoForm.LastName></label>
-							<span asp-validation-for="BasicInfoForm.LastName"></span>
-							<input asp-for="BasicInfoForm.LastName" />
+							<label asp-for=BasicInfoForm!.LastName></label>
+							@if (Model.BasicInfoForm!.IsExternalAccount)
+							{
+								<input asp-for="BasicInfoForm!.LastName" disabled />
+							}
+							else
+							{
+								<input asp-for="BasicInfoForm!.LastName" />
+								<span asp-validation-for="BasicInfoForm!.LastName"></span>
+							}
 						</div>
 
 						<div id="form-email" class="input-group">
-							<label asp-for=BasicInfoForm.Email></label>
-							<span asp-validation-for="BasicInfoForm.Email"></span>
-							<input asp-for="BasicInfoForm.Email" />
+							<label asp-for=BasicInfoForm!.Email></label>
+							@if (Model.BasicInfoForm!.IsExternalAccount)
+							{
+								<input asp-for="BasicInfoForm!.Email" disabled />
+							}
+							else
+							{
+								<input asp-for="BasicInfoForm!.Email" />
+								<span asp-validation-for="BasicInfoForm!.Email"></span>
+							}
 						</div>
 
 						<div id="form-phone" class="input-group">
-							<label asp-for=BasicInfoForm.PhoneNumber></label>
-							<span asp-validation-for="BasicInfoForm.PhoneNumber"></span>
-							<input asp-for="BasicInfoForm.PhoneNumber" />
+							<label asp-for=BasicInfoForm!.PhoneNumber></label>
+							<span asp-validation-for="BasicInfoForm!.PhoneNumber"></span>
+							<input asp-for="BasicInfoForm!.PhoneNumber" />
 						</div>
 
 						<div id="form-bio" class="input-group">
-							<label asp-for=BasicInfoForm.Biography>Bio <span>(optional</span></label>
-							<textarea asp-for="BasicInfoForm.Biography"></textarea>	
-							<span asp-validation-for="BasicInfoForm.Biography"></span>
+							<label asp-for=BasicInfoForm!.Biography>Bio <span>(optional</span></label>
+							<textarea asp-for="BasicInfoForm!.Biography"></textarea>	
+							<span asp-validation-for="BasicInfoForm!.Biography"></span>
 						</div>
 
 						<div class="form-buttons">
@@ -87,27 +111,27 @@
 					<div class="content">
 
 						<div id="form-adressline-1" class="input-group">
-							<label asp-for="AddressInfoForm.AddressLine_1"></label>
-							<span asp-validation-for="AddressInfoForm.AddressLine_1"></span>
-							<input asp-for="AddressInfoForm.AddressLine_1" />
+							<label asp-for="AddressInfoForm!.AddressLine_1"></label>
+							<span asp-validation-for="AddressInfoForm!.AddressLine_1"></span>
+							<input asp-for="AddressInfoForm!.AddressLine_1" />
 						</div>
 
 						<div id="form-adressline-2" class="input-group">
-							<label asp-for="AddressInfoForm.AddressLine_2">Address line 2<span>(optional)</span></label>
-							<span asp-validation-for="AddressInfoForm.AddressLine_2"></span>
-							<input asp-for="AddressInfoForm.AddressLine_2" />
+							<label asp-for="AddressInfoForm!.AddressLine_2">Address line 2<span>(optional)</span></label>
+							<span asp-validation-for="AddressInfoForm!.AddressLine_2"></span>
+							<input asp-for="AddressInfoForm!.AddressLine_2" />
 						</div>
 
 						<div id="form-postalcode" class="input-group">
-							<label asp-for="AddressInfoForm.PostalCode"></label>
-							<span asp-validation-for="AddressInfoForm.PostalCode"></span>
-							<input asp-for="AddressInfoForm.PostalCode" />
+							<label asp-for="AddressInfoForm!.PostalCode"></label>
+							<span asp-validation-for="AddressInfoForm!.PostalCode"></span>
+							<input asp-for="AddressInfoForm!.PostalCode" />
 						</div>
 
 						<div id="form-city" class="input-group">
-							<label asp-for="AddressInfoForm.City"></label>
-							<span asp-validation-for="AddressInfoForm.City"></span>
-							<input asp-for="AddressInfoForm.City" />
+							<label asp-for="AddressInfoForm!.City"></label>
+							<span asp-validation-for="AddressInfoForm!.City"></span>
+							<input asp-for="AddressInfoForm!.City" />
 						</div>
 
 						<div class="form-buttons">

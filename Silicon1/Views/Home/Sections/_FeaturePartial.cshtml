@@ -1,4 +1,6 @@
-﻿@* @inject FeatureService _featureService
+﻿@using idInfrastructure.Services
+
+@inject FeatureService _featureService
 @{
 	var result = await _featureService.GetAllFeaturesAsync();
 	List<FeatureEntity> content = (List<FeatureEntity>)result.ContentResult!;
@@ -24,4 +26,4 @@
 			</div>
 		</div>
 	</section>
-} *@
+} 
