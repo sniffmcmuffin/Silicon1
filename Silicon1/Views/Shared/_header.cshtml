@@ -11,11 +11,19 @@
             <nav>
                 <a class="menu-link" href="#showcase">Overview</a>
                 <a class="menu-link" href="#features">Features</a>
+
                 @if (_signInManager.IsSignedIn(User))
                 {
                     <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                    <a class="menu-link" asp-controller="Account" asp-action="Deets">Account</a>
+                    
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="menu-link" asp-controller="Admin" asp-action="Index">Admin</a>
+                    }
                 }
                 <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
+
             </nav>
         </div>
 

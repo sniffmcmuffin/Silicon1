@@ -190,7 +190,7 @@ namespace idInfrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Address");
+                    b.ToTable("Address", (string)null);
                 });
 
             modelBuilder.Entity("idInfrastructure.Entities.FeatureEntity", b =>
@@ -211,7 +211,7 @@ namespace idInfrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Features");
+                    b.ToTable("Features", (string)null);
                 });
 
             modelBuilder.Entity("idInfrastructure.Entities.FeatureItemEntity", b =>
@@ -241,7 +241,7 @@ namespace idInfrastructure.Migrations
 
                     b.HasIndex("FeatureId");
 
-                    b.ToTable("FeaturesItems");
+                    b.ToTable("FeaturesItems", (string)null);
                 });
 
             modelBuilder.Entity("idInfrastructure.Entities.UserEntity", b =>

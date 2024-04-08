@@ -24,6 +24,8 @@ public class AccountController(UserManager<UserEntity> userManager, AddressServi
 		if (!_signInManager.IsSignedIn(User))
 			return RedirectToAction("SignIn", "Auth");
 
+		var claims = HttpContext.User.Identities.FirstOrDefault();
+		
 		var viewModel = new AccountDeetsViewModel();
 		viewModel.ProfileInfo = await PopulateProfileInfoAsync();
 		viewModel.BasicInfoForm ??= await PopulateBasicInfoAsync();

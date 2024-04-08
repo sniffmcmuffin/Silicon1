@@ -14,7 +14,6 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 	private readonly UserManager<UserEntity> _userManager = userManager;
 	private readonly SignInManager<UserEntity> _signInManager = signInManager;
 
-
 	#region Individual Account - SignUp
 	[HttpGet]
 	[Route("/signup")]
@@ -30,8 +29,15 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 	[Route("/signup")]
 	public async Task<IActionResult> Signup(SignUpViewModel viewModel)
 	{
+		var standardRole = "User";
+
 		if (ModelState.IsValid)
 		{
+			if (!await _userManager.Users.AnyAsync())
+			{
+				standardRole = "Admin";
+			}
+
 			var exists = await _userManager.Users.AnyAsync(x => x.Email == viewModel.Form.Email);
 			if (exists)
 			{
@@ -49,11 +55,11 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 			};
 
 			var result = await _userManager.CreateAsync(userEntity, viewModel.Form.Password);
+		
 			if (result.Succeeded)
 			{
-				return RedirectToAction("Deets", "Account");
-				// Alternativt 
-				// return RedirectToAction("Signin", "Auth");
+				 await _userManager.AddToRoleAsync(userEntity, standardRole);
+				 return RedirectToAction("Deets", "Account");
 			}
 		}
 		return View(viewModel);
@@ -72,8 +78,6 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
 
 		return View();
 	}
-
-
 
 	[HttpPost]
 	[Route("/signin")]

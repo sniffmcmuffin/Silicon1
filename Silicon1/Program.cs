@@ -2,6 +2,7 @@ using idInfrastructure.Contexts;
 using idInfrastructure.Entities;
 using idInfrastructure.Repositories;
 using idInfrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Silicon1.Helpers.Middlewares;
 
@@ -31,7 +32,9 @@ builder.Services.AddDefaultIdentity<UserEntity>(x =>
     x.User.RequireUniqueEmail = true;
     x.SignIn.RequireConfirmedAccount = false;
     x.Password.RequiredLength = 8;
-}).AddEntityFrameworkStores<AppDbContext>();
+})
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.ConfigureApplicationCookie(x =>
 {   
@@ -54,6 +57,14 @@ builder.Services.AddAuthentication().AddFacebook(x =>
     x.Fields.Add("last_name");
 });
 
+builder.Services.AddAuthorization(x =>
+{
+    x.AddPolicy("SuperAdmins", policy => policy.RequireRole("SuperAdmin"));
+    x.AddPolicy("Admins", policy => policy.RequireRole("SuperAdmin", "Admin"));
+    x.AddPolicy("Managers", policy => policy.RequireRole("Admin", "SuperAdmin", "Manager"));
+    x.AddPolicy("AuthenticatedUsers", policy => policy.RequireRole("Admin", "SuperAdmin", "Manager", "User"));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -71,6 +82,19 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseUserSessionValidation(); 
 app.UseAuthorization();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+	string[] roles = ["SuperAdmin", "Admin", "Manager", "User"];
+
+    foreach (var role in roles)
+        if (!await roleManager.RoleExistsAsync(role))
+        {
+            await roleManager.CreateAsync(new IdentityRole(role));
+        }
+}
 
 app.MapControllerRoute(
     name: "default",

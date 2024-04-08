@@ -39,4 +39,7 @@ public class HomeController : Controller
 
 	[Route("/error")]
 	public IActionResult Error404(int statusCode) => View();
+
+	[Route("/denied")]
+	public IActionResult AccessDenied(int statusCode) => View();
 }
