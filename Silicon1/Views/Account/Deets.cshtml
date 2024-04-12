@@ -1,14 +1,17 @@
-﻿@model AccountDeetsViewModel	
+﻿@model AccountDeetsViewModel
+@inject UserManager<UserEntity> UserManager
 @{
-	 ViewData["Title"] = $"Account Details for {Model.ProfileInfo!.FirstName} {Model.ProfileInfo.LastName}'s profile";
+	var user = await UserManager.GetUserAsync(User);
+
+	ViewData["Title"] = $"Account Details for {Model.ProfileInfo!.FirstName} {Model.ProfileInfo.LastName}'s profile";
 }
 
 <div class="container">
 	
-	@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+	@if (!string.IsNullOrEmpty(TempData["StatusMessage"]?.ToString()))
 	{
 		<div class="alerter">
-			@ViewData["ErrorMessage"]
+			@TempData["StatusMessage"]
 		</div>
 	}
 
@@ -16,8 +19,12 @@
 		<aside>
 			<div class="profile">
 				<div class="profile-image">
-					<img src="~/images/profiles/@Model.ProfileInfo.ProfileImageUrl" alt="@($"{Model.ProfileInfo.FirstName} {Model.ProfileInfo.LastName}'s profile picture.")" />
-					<a class="btn-white-circle" href="#"><i class="fa-regular fa-refresh"></i></a>
+					<img src="~/images/uploads/profiles/@user!.ProfileImage" alt="@($"{Model.ProfileInfo.FirstName} {Model.ProfileInfo.LastName}'s profile picture.")" />
+					
+					<form enctype="multipart/form-data" method="post" asp-action="UploadProfileImage" asp-controller="Account">
+						<input id="fileUploader" type="file" name="file" hidden />
+						<label for="fileUploader" class="btn btn-circle"><i class="fa-solid fa-arrows-rotate"></i></label>
+					</form>
 				</div>
 				<div class="profile-info">
 					<h5>@($"{Model.ProfileInfo.FirstName} {Model.ProfileInfo.LastName}")</h5>

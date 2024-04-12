@@ -30,4 +30,8 @@
     <ProjectReference Include="..\idInfrastructure\idInfrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\uploads\profiles\" />
+  </ItemGroup>
+
 </Project>

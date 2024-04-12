@@ -996,9 +996,46 @@ footer .container .social-media {
   border-right: 1px solid #E2E5F1;
   padding-right: 20px;
 }
+#account-deets aside .profile .profile-image {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #6366F1;
+  overflow: hidden;
+}
+#account-deets aside .profile .profile-image img {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+#account-deets aside .profile .profile-image .btn-circle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 50%);
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+#account-deets aside .profile .profile-image .btn-circle i {
+  font-size: 14px;
+}
 #account-deets aside .profile-info {
   margin: 20px;
-  text-align: center;
+  text-align: left;
 }
 #account-deets aside .profile-info h5 {
   margin-top: 15px;
