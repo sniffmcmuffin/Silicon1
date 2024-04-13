@@ -10,3 +10,8 @@
 <section id="switch">
     @await Html.PartialAsync("~/Views/Home/Sections/_SwitchPartial.cshtml")
 </section>
+
+<section id="subscribe">
+    @await Html.PartialAsync("~/Views/Shared/_SubscribeToNewsletter.cshtml", new SubscribeViewModel())
+
+</section>
