@@ -1,7 +1,8 @@
 ﻿@model HomeIndexViewModel
 
-@await Html.PartialAsync("~/Views/Home/Sections/_ShowcasePartial.cshtml", Model.ShowCase)
-
+<section id="showcase">
+    @await Html.PartialAsync("~/Views/Home/Sections/_ShowcasePartial.cshtml", Model.ShowCase)
+</section>
 
 <section id="features">
     @await Html.PartialAsync("~/Views/Home/Sections/_FeaturePartial.cshtml")
@@ -11,7 +12,18 @@
     @await Html.PartialAsync("~/Views/Home/Sections/_SwitchPartial.cshtml")
 </section>
 
+<section id="manager-work">
+    @await Html.PartialAsync("~/Views/Home/Sections/_ManagerPartial.cshtml")
+</section>
+
+<section id="download-app">
+    @await Html.PartialAsync("~/Views/Home/Sections/_DownloadPartial.cshtml")
+</section>
+
+<section id="integrate-tools">
+    @await Html.PartialAsync("~/Views/Home/Sections/_IntegratePartial.cshtml")
+</section>
+
 <section id="subscribe">
     @await Html.PartialAsync("~/Views/Shared/_SubscribeToNewsletter.cshtml", new SubscribeViewModel())
-
 </section>
