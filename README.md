@@ -2,6 +2,10 @@
 
 School assignment
 
+MOST ANNOYING BUG: Why why why does the slider in header have a left straight edge?! :[
+
 Infrastructure project => Entity Framework (original project)
 
 IdInfrastructure Project => Identity Individual Accounts (current project)
+
+
