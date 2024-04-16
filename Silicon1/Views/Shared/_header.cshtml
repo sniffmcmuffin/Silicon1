@@ -35,8 +35,7 @@
             </label>
             <label>Dark</label>
         </div>
-
-        @* Klura ut hur ändra knapparna från href till asp-controller="Account" asp-action="SignIn" *@
+              
         <div id="account-buttons" class="hide"> 
             @if (_signInManager.IsSignedIn(User))
             {
@@ -44,7 +43,7 @@
             }
             else
             {
-                <a asp-controller="Auth" asp-action="SignIn" class="btn-theme"><i class="fa-solid fa-right-to-bracket"></i><span>Sign In</span></a>
+                <a asp-controller="Auth" asp-action="SignIn" class="btn-theme"><i class="fa-regular fa-circle-right"></i><span>Sign In</span></a>
                 <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i><span>Sign Up</span></a>
 
             }

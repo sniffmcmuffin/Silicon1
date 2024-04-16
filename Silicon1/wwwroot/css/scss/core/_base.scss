@@ -1,6 +1,20 @@
+*, *::before, *::after {
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 16px;
+    box-sizing: border-box;
+    margin: 0;
+}
+
 html, body {
     @include standard-text;
-    font-size: 16px; 
+    font-size: 16px;
+   
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size: 16px;
+    background-color: $white;
 }
 
 .wrapper {

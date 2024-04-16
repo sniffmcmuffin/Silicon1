@@ -1,6 +1,7 @@
 .showcase {
     position: relative;
-    margin-bottom: 80px;
+    padding: 100px;
+    margin-bottom: 50px;
 
     .container {
         display: flex;
@@ -9,8 +10,7 @@
         height: 100%;
 
         .content {
-/*            width: 100%;
-            text-align: left*/;
+            width: 40%;
 
             @media (max-width: 1400px) {
                 width: 100%;
@@ -28,12 +28,11 @@
             }
 
             @media (max-width: 768px) {
-                min-width: 50%;
-                align-items: center;
-                justify-content: center;
-                
+                    text-align: left;
+                    justify-content: left;
+                    width: 40%;                    
+                    margin: auto -25px; 
             }
-
 
             h1 {
                 font-size: 24px;
@@ -68,7 +67,6 @@
             }
 
             .brands {
-                //  display: none;
                 gap: 30px;
 
                 @media (max-width: 1400px) {
@@ -119,8 +117,11 @@
             display: none;
 
             @media (min-width: 1200px) {
-                width: 45%; /* Adjusted width for the image */
+                width: 45%;
                 display: block;
+                right: 0;
+                top: -10px;
+                position: absolute;
             }
         }
     }

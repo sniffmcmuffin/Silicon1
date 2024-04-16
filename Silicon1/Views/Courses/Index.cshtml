@@ -5,23 +5,25 @@
 
 <section class="courses">
 	<div class="container">
-		<h1>Courses</h1>
-		<form id="form-filters">
-			<select>
-				<option>All Categories</option>
-			</select>
-			<div class="input-search-group">
-				<input id="searchQuery" name="searchQuery" placeholder="Search Courses" />
-				<i class="fa-regular fa-search"></i>
-			</div>
-		</form>
+		<div class="header">
+			<h1>Courses</h1>
+			<form id="form-filters">
+				<select>
+					<option>All Categories</option>
+				</select>
+				<div class="input-search-group">
+					<input id="searchQuery" name="searchQuery" placeholder="Search Courses" />
+					<i class="fa-brands fa-searchengin"></i>
+				</div>
+			</form>
+		</div>
 
 		<div class="course-items">
 			@if (Model.Courses != null)
 			{
 				@foreach(var course in Model.Courses)
 				{
-					<a asp-action="Details" asp-controller="Courses" asp-route-id="@course.Id">
+					<a class="course" asp-action="Details" asp-controller="Courses" asp-route-id="@course.Id">
 						@if (course.IsBestseller)
 						{
 							<div class="bestseller">Best seller</div>
@@ -33,7 +35,7 @@
 						<div class="content">
 							<h5 class="title">@course.Title</h5>
 							<p class="author">by @course.Author</p>
-							<div class="princing">
+							<div class="pricing">
 								@if (!string.IsNullOrEmpty(course.DiscountPrice))
 								{
 									<div class="discount">@course.DiscountPrice</div>
