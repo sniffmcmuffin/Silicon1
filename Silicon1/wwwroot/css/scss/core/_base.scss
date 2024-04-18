@@ -10,11 +10,10 @@
 html, body {
     @include standard-text;
     font-size: 16px;
-   
     font-optical-sizing: auto;
     font-style: normal;
     font-size: 16px;
-    background-color: $white;
+    background-color: var(--color-background);
 }
 
 .wrapper {
@@ -46,4 +45,18 @@ h6, .h6 { @include h6; }
 
 .hide {
     display: none !important;
+}
+
+.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }

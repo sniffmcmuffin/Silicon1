@@ -1,8 +1,8 @@
 #download-app {
-    background-color: $gray-100;
+    background-color: var(--color-gray-100);
 
     .container {
-        background-color: $gray-200;
+        background-color: var(--color-gray-200);
         display: flex;
         justify-content: space-between;
         padding: 6rem 1rem;
@@ -35,7 +35,7 @@
                 margin: 3rem 0;
 
                 .store {
-                    color: $gray-600;
+                    color: var(--color-gray-600);
                 }
 
                 .rating {

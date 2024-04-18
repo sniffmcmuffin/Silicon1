@@ -1,4 +1,4 @@
-.switch {
+.darklight {
     height: 100%;
     display: grid;
     place-items: center;
@@ -20,14 +20,14 @@
             }
 
             .light {
-                color: $white;
+                color: var(--color-white);
                 text-align: right;
             }
 
             .dark {
                 text-align: left;
                 margin-left: 50px;
-                color: $gray-900;
+                color: var(--color-gray-900);
             }
 
             img {

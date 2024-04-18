@@ -18,19 +18,19 @@
                 list-style: none;
                 margin: 2rem 0;
                 padding: 0;
-                                
+
                 li {
                     margin-bottom: 10px;
 
                     i {
-                        color: $theme;
+                        color: var(--color-theme);
                         margin-right: 8px;
                     }
                 }
             }
 
             a {
-               display: inline-block;
+                display: inline-block;
             }
         }
     }

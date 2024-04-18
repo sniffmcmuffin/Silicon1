@@ -8,6 +8,7 @@ header {
         grid-template-areas: "logo mobile";
         gap: 40px;
 
+
         @include lg {
             grid-template-columns: auto 1fr auto auto;
             grid-template-areas: "logo menu switch buttons";
@@ -59,7 +60,7 @@ header {
             }
 
             #menu {
-                display: none; // Hide the menu by default
+                display: none;
             }
         }
     }

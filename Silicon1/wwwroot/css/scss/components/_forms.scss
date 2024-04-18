@@ -17,7 +17,7 @@ form {
                 top: 0;
                 right: 0;
                 @include text-s;
-                color: $danger;
+                color: var(--color-danger);
             }
         }
     }
@@ -47,7 +47,7 @@ form {
                 top: 0;
                 right: 0;
                 @include text-s;
-                color: $danger;
+                color: var(--color-danger);
             }
         }
     }
@@ -60,18 +60,18 @@ form {
     input {
         padding: 1rem;
         border-radius: 0.5rem !important;
-        border: 0.063rem solid $gray-400;
+        border: 0.063rem solid var(--color-gray-400);
 
         &::placeholder {
             opacity: 0.4;
         }
 
         &.input-validation-error {
-            border: 0.063rem solid $danger !important;
-            color: $danger;
+            border: 0.063rem solid var(--color-danger) !important;
+            color: var(--color-danger);
 
             &::placeholder {
-                color: $danger;
+                color: var(--color-danger);
             }
         }
     }
@@ -79,7 +79,7 @@ form {
     textarea {
         padding: 1rem;
         border-radius: 0.5rem !important;
-        border: 0.063rem solid $gray-800;
+        border: 0.063rem solid var(--color-gray-800);
         resize: none;
 
         &::placeholder {
@@ -87,11 +87,11 @@ form {
         }
 
         &.input-validation-error {
-            border: 0.063rem solid $danger !important;
-            color: $danger;
+            border: 0.063rem solid var(--color-danger) !important;
+            color: var(--color-danger);
 
             &::placeholder {
-                color: $danger;
+                color: var(--color-danger);
             }
         }
     }
@@ -102,8 +102,8 @@ form {
             top: 0;
             right: 0;
             @include text-s;
-            color: $danger;
-            /*  Why do this also give the red circle X on top right corner? Ok not with the -30px instead of 10px. */
+            color: var(--color-danger);
+
             &::after {
                 position: absolute;
                 right: -30px;

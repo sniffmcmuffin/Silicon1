@@ -2,6 +2,7 @@
     position: relative;
     padding: 100px;
     margin-bottom: 50px;
+   
 
     .container {
         display: flex;
@@ -28,10 +29,10 @@
             }
 
             @media (max-width: 768px) {
-                    text-align: left;
-                    justify-content: left;
-                    width: 40%;                    
-                    margin: auto -25px; 
+                text-align: left;
+                justify-content: left;
+                width: 40%;
+                margin: auto -25px;
             }
 
             h1 {
