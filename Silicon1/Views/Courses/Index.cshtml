@@ -8,9 +8,21 @@
 		<div class="header">
 			<h1>Courses</h1>
 			<form id="form-filters">
-				<select>
-					<option>All Categories</option>
-				</select>
+				
+				<div class="select">
+					<div class="selected">All categories</div>
+					<div class="select-options">
+						<div class="option" data-value="all">All categories</div>
+						@if (Model.Categories != null)
+						{
+							foreach (var category in Model.Categories)
+							{
+								<div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+							}
+						}
+					</div>
+				</div>
+
 				<div class="input-search-group">
 					<input id="searchQuery" name="searchQuery" placeholder="Search Courses" />
 					<i class="fa-brands fa-searchengin"></i>
@@ -18,19 +30,21 @@
 			</form>
 		</div>
 
-		<div class="course-items">
 			@if (Model.Courses != null)
 			{
-				@foreach(var course in Model.Courses)
+
+		<div class="course-items">
+		
+				@foreach (var course in Model.Courses)
 				{
-					<a class="course" asp-action="Details" asp-controller="Courses" asp-route-id="@course.Id">
+					<div class="course" onclick="location.href='@Url.Action("Details", "Courses", new { id = course.Id })'">
 						@if (course.IsBestseller)
 						{
 							<div class="bestseller">Best seller</div>
 						}
 
-						<button class="btn btn-circle bookmark"><i class="fa-regular fa-bookmark"></i></button>
-					
+						<button class="btn btn-circle bookmark" asp-action="Join" asp-controller="Courses"><i class="fa-regular fa-bookmark"></i></button>
+
 						<img src="~/images/@course.Image" alt="@course.Title" />
 						<div class="content">
 							<h5 class="title">@course.Title</h5>
@@ -52,9 +66,10 @@
 								</div>
 							</div>
 						</div>
-					</a>
+					</div>
 				}
-			}
+			
 		</div>
+		}
 	</div>
 </section>

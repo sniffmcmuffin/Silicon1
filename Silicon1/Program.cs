@@ -27,6 +27,8 @@ builder.Services.AddScoped<FeatureItemRepository>();
 //builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<FeatureService>();
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<CourseService>();
 
 // Identity Individual Accounts stuff
 builder.Services.AddDefaultIdentity<UserEntity>(x =>

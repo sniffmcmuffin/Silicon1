@@ -1,6 +1,9 @@
-﻿namespace Silicon1.ViewModels;
+﻿using idInfrastructure.Models;
+
+namespace Silicon1.ViewModels;
 
 public class CourseIndexViewModel
 {
-	public IEnumerable<CourseViewModel> Courses { get; set; } = [];
+	public IEnumerable<CourseModel> Courses { get; set; } = [];
+	public IEnumerable<CategoryModel>? Categories { get; set; }
 }
