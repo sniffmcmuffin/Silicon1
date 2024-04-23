@@ -12,13 +12,13 @@ public class CoursesController(CategoryService categoryService, CourseService co
 	private readonly CategoryService _categoryService = categoryService;
 	private readonly CourseService _courseService = courseService;
 
-	[Route("/courses")]
-	public async Task<IActionResult> Index()
+	// [Route("/courses")]
+	public async Task<IActionResult> Index(string category = "", string searchQuery = "")
 	{
 		var viewModel = new CourseIndexViewModel
 		{
 			Categories = await _categoryService.GetCategoriesAsync(),
-			Courses = await _courseService.GetCoursesAsync(),
+			Courses = await _courseService.GetCoursesAsync(category, searchQuery),
 		};
 
 		return View(viewModel);

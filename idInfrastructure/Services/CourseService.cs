@@ -19,17 +19,12 @@ namespace idInfrastructure.Services
 			_configuration = configuration;
 		}
 
-		public async Task<IEnumerable<CourseModel>> GetCoursesAsync()
+		public async Task<IEnumerable<CourseModel>> GetCoursesAsync(string category = "", string searchQuery = "")
 		{
-			var response = await _httpClient.GetAsync(_configuration["ApiUris:Courses"]);
+			var response = await _httpClient.GetAsync($"{_configuration["ApiUris:Courses"]}?category={Uri.UnescapeDataString(category)}&searchQuery={Uri.UnescapeDataString(searchQuery)}");
 
 			if (response.IsSuccessStatusCode)
 			{
-				//var jsonResponse = await response.Content.ReadAsStringAsync();
-				//var jsonObject = JObject.Parse(jsonResponse);
-				//var courses = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(jsonObject["courses"].ToString());
-				//return courses ??= null!;
-
 				var result = JsonConvert.DeserializeObject<CourseResult>(await response.Content.ReadAsStringAsync());
 
 				if (result != null && result.Succeeded)

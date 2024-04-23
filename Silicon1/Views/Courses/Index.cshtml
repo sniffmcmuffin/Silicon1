@@ -10,7 +10,7 @@
 			<form id="form-filters">
 				
 				<div class="select">
-					<div class="selected">All categories</div>
+					<div class="selected">All categories <i class="fa-solid fa-arrows-up-down"></i></div>
 					<div class="select-options">
 						<div class="option" data-value="all">All categories</div>
 						@if (Model.Categories != null)
@@ -20,6 +20,7 @@
 								<div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
 							}
 						}
+						
 					</div>
 				</div>
 
@@ -33,7 +34,7 @@
 			@if (Model.Courses != null)
 			{
 
-		<div class="course-items">
+		<div class="items">
 		
 				@foreach (var course in Model.Courses)
 				{

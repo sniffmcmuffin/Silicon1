@@ -1433,46 +1433,68 @@ footer .container .social-media {
   padding-top: 3rem;
   padding-bottom: 5rem;
 }
-.courses .container .select {
+.courses .container #form-filters {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+}
+.courses .container #form-filters input:not([type=checkbox]) {
+  min-width: 300px;
+  font-size: 16px;
+  font-family: "manrope";
+  font-weight: 400 !important;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-gray-400);
+}
+.courses .container #form-filters .input-search-group {
+  position: relative;
+}
+.courses .container #form-filters .input-search-group input {
+  position: relative;
+  padding-right: 40px;
+}
+.courses .container #form-filters .input-search-group i {
+  position: absolute;
+  top: 14px;
+  right: 1rem;
+}
+.courses .container #form-filters .select {
   position: relative;
   display: inline-block;
 }
-.courses .container .selected {
+.courses .container #form-filters .selected {
   padding: 8px 16px;
   background-color: #f2f2f2;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
+  border: 1px solid var(--color-gray-400);
 }
-.courses .container .select-options {
+.courses .container #form-filters .select-options {
   position: absolute;
   top: 100%;
   left: 0;
   z-index: 1;
   display: none;
-  min-width: 100%;
+  min-width: 200px;
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
   border-radius: 0 0 4px 4px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
-.courses .container .option {
+.courses .container #form-filters .option {
   padding: 8px 16px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.courses .container .option:hover {
+.courses .container #form-filters .option:hover {
   background-color: #f2f2f2;
 }
-.courses .container .select:hover .select-options {
+.courses .container #form-filters .select:hover .select-options {
   display: block;
-}
-.courses .container #form-filters {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1.5rem;
 }
 .courses .container .header {
   display: flex;
@@ -1480,12 +1502,12 @@ footer .container .social-media {
   align-items: center;
   margin-bottom: 1rem;
 }
-.courses .container .course-items {
+.courses .container .items {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
 }
-.courses .container .course-items .course {
+.courses .container .items .course {
   position: relative;
   display: block;
   border-radius: 8px;
@@ -1493,10 +1515,10 @@ footer .container .social-media {
   text-decoration: none;
   box-shadow: 0 0 14px -4px var(--color-gray-700);
 }
-.courses .container .course-items .course:hover {
+.courses .container .items .course:hover {
   box-shadow: 0 0 14px -4px var(--color-gray-900);
 }
-.courses .container .course-items .course .bestseller {
+.courses .container .items .course .bestseller {
   position: absolute;
   top: 1rem;
   left: 1rem;
@@ -1505,46 +1527,46 @@ footer .container .social-media {
   padding: 4px 12px;
   border-radius: 4px;
 }
-.courses .container .course-items .course .bookmark {
+.courses .container .items .course .bookmark {
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 999;
 }
-.courses .container .course-items .course img {
+.courses .container .items .course img {
   width: 100%;
 }
-.courses .container .course-items .course .content {
+.courses .container .items .course .content {
   padding: 1rem 2rem;
 }
-.courses .container .course-items .course .content .title {
+.courses .container .items .course .content .title {
   font-size: 20px;
 }
-.courses .container .course-items .course .content .author {
+.courses .container .items .course .content .author {
   font-size: 14px;
   margin: 0.5rem 0;
 }
-.courses .container .course-items .course .content .pricing {
+.courses .container .items .course .content .pricing {
   display: flex;
   gap: 1rem;
   font-size: 18px;
   font-weight: 600;
 }
-.courses .container .course-items .course .content .pricing .discount {
+.courses .container .items .course .content .pricing .discount {
   color: var(--color-danger-dark);
 }
-.courses .container .course-items .course .content .pricing .original {
+.courses .container .items .course .content .pricing .original {
   color: var(--color-theme);
   font-size: 18px;
   font-weight: 600;
 }
-.courses .container .course-items .course .content .pricing .discount-enabled {
+.courses .container .items .course .content .pricing .discount-enabled {
   color: var(--color-gray-600);
   text-decoration: line-through;
   font-size: 18px;
   font-weight: 400;
 }
-.courses .container .course-items .course .content .footer {
+.courses .container .items .course .content .footer {
   color: var(--color-gray-600);
   border-top: 1px solid var(--color-gray-400);
   display: flex;
@@ -1552,10 +1574,10 @@ footer .container .social-media {
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.courses .container .course-items .course .content .footer .hours i {
+.courses .container .items .course .content .footer .hours i {
   margin-right: 5px;
 }
-.courses .container .course-items .course .content .footer .likes i {
+.courses .container .items .course .content .footer .likes i {
   margin-right: 5px;
 }
 
