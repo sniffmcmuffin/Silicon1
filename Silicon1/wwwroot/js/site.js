@@ -75,7 +75,7 @@ function select() {
     catch { }
 }
 
-function searchQuery() {
+function searchQuery() { 
 
     try {
         document.querySelector('#searchQuery').addEventListener('keyup', function () {
